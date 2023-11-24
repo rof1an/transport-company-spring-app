@@ -1,14 +1,14 @@
-package com.rflwn.app.entity;
+package com.rflwn.app.dto;
 
+import com.rflwn.app.entity.Route;
+import com.rflwn.app.entity.RouteList;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-@Entity
-@Table(name = "tickets")
-public class Ticket {
+public class TicketDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -28,7 +28,7 @@ public class Ticket {
     private String buyerFirstname;
     private String buyerLastname;
 
-    public Ticket() {
+    public TicketDto() {
         this.purchaseDate = LocalDateTime.now();
     }
 }

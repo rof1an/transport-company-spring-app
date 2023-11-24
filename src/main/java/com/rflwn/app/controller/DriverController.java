@@ -1,7 +1,6 @@
 package com.rflwn.app.controller;
 
 import com.rflwn.app.dto.DriverDto;
-import com.rflwn.app.dto.DriverListDto;
 import com.rflwn.app.entity.Driver;
 import com.rflwn.app.mapper.ModelDtoMapper;
 import com.rflwn.app.service.DriverService;
@@ -25,16 +24,16 @@ public class DriverController {
     }
 
     @GetMapping("{id}")
-    public DriverDto getDriverInfoById(@PathVariable("id") int id){
+    public DriverDto getDriverInfoById(@PathVariable("id") int id) {
         Driver driverById = driverService.getDriverById(id);
         return modelDtoMapper.toDto(driverById, DriverDto.class);
     }
 
     @PostMapping
-    public List<DriverDto> addNewDriver(@RequestBody DriverListDto driverListDto) {
-        List<Driver> mappedDrivers = modelDtoMapper.modelListToDtoList(driverListDto.getDriverList(), Driver.class);
+    public List<DriverDto> addNewDriver(@RequestBody List<DriverDto> driverListDto) {
+        List<Driver> mappedDrivers = modelDtoMapper.modelListToDtoList(driverListDto, Driver.class);
         driverService.addNewDriver(mappedDrivers);
-        return modelDtoMapper.modelListToDtoList(mappedDrivers, DriverDto.class);
+        return modelDtoMapper.dtoListToModelList(mappedDrivers, DriverDto.class);
     }
 
     @PutMapping("{id}")

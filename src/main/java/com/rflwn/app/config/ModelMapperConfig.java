@@ -1,4 +1,4 @@
-package com.rflwn.app.mapper;
+package com.rflwn.app.config;
 
 
 import org.modelmapper.ModelMapper;

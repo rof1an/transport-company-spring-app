@@ -19,7 +19,8 @@ public class DriverService {
 
     public Driver getDriverById(int id) {
         return driverRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Driver not found with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException
+                        (String.format("Водитель с id = %d не найден", id)));
     }
 
     public List<Driver> addNewDriver(List<Driver> drivers) {
@@ -31,6 +32,9 @@ public class DriverService {
     }
 
     public void deleteDriverById(int id) {
-        driverRepository.deleteById(id);
+        Driver driverById = getDriverById(id);
+        if (driverById != null) {
+            driverRepository.deleteById(id);
+        }
     }
 }

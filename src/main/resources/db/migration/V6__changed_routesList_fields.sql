@@ -1,0 +1,2 @@
+ALTER TABLE RoutesList
+DROP COLUMN date;

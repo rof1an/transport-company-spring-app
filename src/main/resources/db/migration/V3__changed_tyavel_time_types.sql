@@ -1,0 +1,5 @@
+ALTER TABLE Routes
+ALTER COLUMN travel_time TYPE VARCHAR(20) USING travel_time::VARCHAR(20);
+
+ALTER TABLE RoutesList
+ALTER COLUMN travel_time TYPE VARCHAR(20) USING travel_time::VARCHAR(20);

@@ -1,15 +1,12 @@
-package com.rflwn.app.entity;
+package com.rflwn.app.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-@Entity
-@Table(name = "routeslist")
-public class RouteList {
+public class RouteListDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -23,13 +20,13 @@ public class RouteList {
 
     @ManyToOne
     @JoinColumn(name = "transportId")
-    private Transport transport;
+    private TransportDto transport;
 
     @ManyToOne
     @JoinColumn(name = "driverId")
-    private Driver driver;
+    private DriverDto driver;
 
     @OneToOne
     @JoinColumn(name = "routeId")
-    private Route route;
+    private RouteDto route;
 }

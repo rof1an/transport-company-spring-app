@@ -1,12 +1,18 @@
-package com.rflwn.app.entity;
+package com.rflwn.app.dto;
 
-import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Entity
-@Table(name = "routes")
-public class Route {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class RouteDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
