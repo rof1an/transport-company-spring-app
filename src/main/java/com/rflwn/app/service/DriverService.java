@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -15,6 +16,17 @@ public class DriverService {
 
     public List<Driver> getAllDrivers() {
         return driverRepository.findAll();
+    }
+
+    public String getDriverLastNameWithInitials(int id) {
+        Driver driverById = driverRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Водитель с id = %d не найден", id)));
+
+        String lastName = driverById.getLastName();
+        String firstNameInitial = driverById.getFirstName().substring(0, 1);
+        String patronymicInitial = driverById.getPatronymic().substring(0, 1);
+
+        return String.format("%s %s. %s.", lastName, firstNameInitial, patronymicInitial);
     }
 
     public Driver getDriverById(int id) {
@@ -36,5 +48,8 @@ public class DriverService {
         if (driverById != null) {
             driverRepository.deleteById(id);
         }
+    }
+    public void deleteAllDrivers(){
+        driverRepository.deleteAll();
     }
 }

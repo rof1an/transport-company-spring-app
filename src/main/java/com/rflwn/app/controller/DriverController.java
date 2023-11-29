@@ -29,6 +29,11 @@ public class DriverController {
         return modelDtoMapper.toDto(driverById, DriverDto.class);
     }
 
+    @GetMapping("/initials/{id}")
+    public String getLastNameWithInitials(@PathVariable("id") int id) {
+        return driverService.getDriverLastNameWithInitials(id);
+    }
+
     @PostMapping
     public List<DriverDto> addNewDriver(@RequestBody List<DriverDto> driverListDto) {
         List<Driver> mappedDrivers = modelDtoMapper.modelListToDtoList(driverListDto, Driver.class);
@@ -46,5 +51,10 @@ public class DriverController {
     @DeleteMapping("{id}")
     public void deleteDriver(@PathVariable int id) {
         driverService.deleteDriverById(id);
+    }
+
+    @DeleteMapping
+    public void deleteAllDrivers(){
+        driverService.deleteAllDrivers();
     }
 }

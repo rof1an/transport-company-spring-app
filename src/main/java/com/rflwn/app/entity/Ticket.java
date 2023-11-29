@@ -27,6 +27,7 @@ public class Ticket {
     private int ticketPrice;
     private String buyerFirstname;
     private String buyerLastname;
+    private String buyerPatronymic;
 
     public Ticket() {
         this.purchaseDate = LocalDateTime.now();
